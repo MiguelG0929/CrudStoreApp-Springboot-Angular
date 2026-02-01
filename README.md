@@ -103,6 +103,7 @@ Ejemplo en Producto:
 @Positive
 BigDecimal precio;`
 
+~~~
 # Base de Datos
 spring.datasource.url=jdbc:postgresql://localhost:5432/crudstore_db
 spring.datasource.username=postgres
@@ -115,6 +116,7 @@ spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 
 # ⚠️ En producción se recomienda usar: ddl-auto=validate
+~~~
 
 
 🌐 CORS
