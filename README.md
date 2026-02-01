@@ -124,14 +124,7 @@ Eliminación lógica
 
 📌 Diagrama Entidad–Relación
 
-Se recomienda colocar la imagen en:
 
-/docs/erd.png
-
-
-Y referenciarla así:
-
-![ERD](docs/erd.png)
 
 🔐 Validaciones
 
