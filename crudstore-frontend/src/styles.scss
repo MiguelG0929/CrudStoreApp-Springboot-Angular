@@ -1,0 +1,31 @@
+/* Angular Material theming - DEBE IR PRIMERO */
+// Importa los mixins y funciones de Angular Material para temas
+@use '@angular/material' as mat;
+
+// Aplica estilos a toda la página HTML
+html {
+  height: 100%; // Hace que ocupe el 100% de la altura del viewport
+  
+  // Configura el tema de Angular Material con:
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,    // Paleta azul para colores primarios
+      tertiary: mat.$blue-palette,    // Paleta azul para colores terciarios
+    ),
+    typography: Roboto,               // Fuente Roboto para toda la app
+    density: 0,                       // Densidad estándar (sin compactar)
+  ));
+}
+
+// Estilos para el cuerpo del documento
+body {
+  color-scheme: light;               // Esquema de colores claro
+  background-color: var(--mat-sys-surface);     // Color de fondo del tema Material
+  color: var(--mat-sys-on-surface);            // Color de texto del tema Material
+  font: var(--mat-sys-body-medium);           // Estilo de tipografía del tema
+  margin: 0;                         // Elimina márgenes por defecto
+  height: 100%;                      // Ocupa toda la altura del html
+}
+
+/* Aquí puedes añadir más estilos globales si quieres */
+// Zona para agregar estilos CSS/SCSS globales personalizados

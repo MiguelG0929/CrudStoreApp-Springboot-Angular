@@ -1,0 +1,15 @@
+//estilos root - Estilos específicos para AppComponent
+
+// Contenedor principal para el contenido de las páginas
+.container {
+  padding: 16px; // Espaciado interno para separar del borde
+}
+
+// Clase utilitaria para crear espacio flexible en flexbox
+.spacer {
+  flex: 1 1 auto; 
+  // flex-grow: 1 (crece)
+  // flex-shrink: 1 (se encoge)  
+  // flex-basis: auto (tamaño base automático)
+  // Esto "empuja" los elementos siguientes hacia la derecha
+}

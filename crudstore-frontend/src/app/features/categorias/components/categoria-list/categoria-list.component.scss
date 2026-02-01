@@ -1,0 +1,26 @@
+/* Estilos para la tabla */
+table {
+  width: 100%;
+}
+
+/* Estilos para los botones de acciones */
+button[mat-button] {
+  margin-right: 8px;
+}
+
+/* Estilos para el mensaje de no datos */
+.mat-elevation-z8 {
+  overflow-x: auto;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .button-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  button[mat-button] {
+    margin-bottom: 4px;
+  }
+}
