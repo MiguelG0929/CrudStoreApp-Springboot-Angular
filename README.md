@@ -1,9 +1,10 @@
-🛒 CrudStoreApp - E-commerce Full Stack
-Simulación de E-commerce profesional con sistema de (inventarios, usuarios, seguridad)
+Simulación de E-commerce profesional con sistema de (inventarios,usuarios,seguridad)
 
 📦 CrudStore Backend
 📖 Descripción
-CrudStore Backend es una API REST desarrollada con Spring Boot que simula el backend de una tienda online. Permite la gestión de categorías y productos, implementando operaciones CRUD completas con persistencia en PostgreSQL, validaciones, desactivación lógica y una arquitectura limpia basada en buenas prácticas.
+
+CrudStore Backend es una API REST desarrollada con Spring Boot que simula el backend de una tienda online.
+Permite la gestión de categorías y productos, implementando operaciones CRUD completas con persistencia en PostgreSQL, validaciones, desactivación lógica y una arquitectura limpia basada en buenas prácticas.
 
 El backend está diseñado para ser consumido por un frontend Angular (documentado por separado).
 
@@ -19,12 +20,15 @@ Maven	—	Gestión de dependencias
 Lombok	—	Reducción de boilerplate
 Jakarta Validation	—	Validación de datos
 🏗️ Arquitectura
+
 El proyecto sigue una arquitectura en capas (Layered Architecture), separando responsabilidades claramente:
 
 Controller → Service → Repository → Database
 
 Capas
+
 Controller
+
 Exposición de endpoints REST
 
 Manejo de HTTP status codes
@@ -32,6 +36,7 @@ Manejo de HTTP status codes
 Validación de datos de entrada (@Valid)
 
 Service
+
 Lógica de negocio
 
 Reglas de dominio
@@ -39,33 +44,48 @@ Reglas de dominio
 Transacciones (@Transactional)
 
 Repository
+
 Acceso a datos mediante Spring Data JPA
 
 Model / Entity
+
 Representación del modelo de dominio
 
 DTO
+
 Separación entre modelo interno y contratos API
 
 📂 Estructura del Proyecto
-https://docs/organizacion-carpetas.png
+![Estructura de directorios del proyecto](docs/organizacion-carpetas.png)
 
 🧩 Patrones de Diseño Aplicados
-DTO Pattern - CreateDTO para entrada / ResponseDTO para salida
 
-Repository Pattern - Abstracción del acceso a datos
+DTO Pattern
 
-Service Layer Pattern - Separación de lógica de negocio
+CreateDTO para entrada
 
-Builder Pattern - Uso de @Builder en entidades
+ResponseDTO para salida
 
-Dependency Injection - Inyección por constructor (best practice)
+Repository Pattern
 
-Soft Delete - Eliminación lógica con campos activo / activa
+Service Layer Pattern
+
+Builder Pattern
+
+Uso de @Builder en entidades
+
+Dependency Injection
+
+Inyección por constructor (best practice)
+
+Soft Delete (Eliminación lógica)
+
+Campos activo / activa
 
 🗄️ Modelo de Datos
 Entidades principales
 CategoriaEntity
+
 Relación OneToMany con Producto
 
 Desactivación lógica
@@ -73,6 +93,7 @@ Desactivación lógica
 Restricción de nombre único
 
 ProductoEntity
+
 Relación ManyToOne con Categoria
 
 Precio con precisión decimal
@@ -80,9 +101,11 @@ Precio con precisión decimal
 Eliminación lógica
 
 📌 Diagrama Entidad–Relación
-https://docs/entidad-relacion.png
+![Diagrama ERD de la base de datos](docs/entidad-relacion.png)
+
 
 🔐 Validaciones
+
 Se utilizan Jakarta Validation:
 
 @NotBlank
@@ -95,37 +118,45 @@ Se utilizan Jakarta Validation:
 
 Ejemplo:
 
-java
 @NotNull
 @Positive
 BigDecimal precio
+
+
 Esto asegura integridad de datos desde la capa API.
 
 ⚙️ Configuración
 Base de Datos
-properties
 spring.datasource.url=jdbc:postgresql://localhost:5432/crudstore_db
 spring.datasource.username=postgres
 spring.datasource.password=1234
 spring.datasource.driver-class-name=org.postgresql.Driver
+
 JPA / Hibernate
-properties
 spring.jpa.hibernate.ddl-auto=create
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
-⚠️ En producción se recomienda usar: ddl-auto=validate
+
+
+⚠️ En producción se recomienda usar:
+
+ddl-auto=validate
 
 🌐 CORS
+
 Configurado para permitir acceso desde Angular:
 
-java
 .allowedOrigins("http://localhost:4200")
 .allowedMethods("GET", "POST", "PUT", "DELETE")
+
 ▶️ Ejecución del Proyecto
-bash
 mvn clean install
 mvn spring-boot:run
-Servidor: http://localhost:9525
+
+
+Servidor:
+
+http://localhost:9525
 
 📡 Endpoints Principales
 Categorías
@@ -144,6 +175,7 @@ GET	/api/productos/categoria/{id}	Por categoría
 PUT	/api/productos/{id}	Actualizar
 DELETE	/api/productos/{id}	Eliminación lógica
 🧪 Inicialización de Datos
+
 Se utiliza CommandLineRunner para cargar datos de prueba al iniciar la aplicación:
 
 Categorías iniciales
@@ -153,6 +185,7 @@ Productos asociados
 Ideal para entorno de desarrollo.
 
 🚀 Buenas Prácticas Implementadas
+
 ✅ Separación de capas
 ✅ DTOs para evitar exponer entidades
 ✅ Eliminación lógica
@@ -160,6 +193,7 @@ Ideal para entorno de desarrollo.
 ✅ Validaciones centralizadas
 ✅ Uso de transacciones
 ✅ Código limpio y legible
+
 
 <div align="center">
 ✨ Proyecto desarrollado con Spring Boot y Angular ✨
