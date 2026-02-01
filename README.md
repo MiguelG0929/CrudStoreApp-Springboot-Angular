@@ -123,7 +123,7 @@ Precio con precisión decimal
 Eliminación lógica
 
 📌 Diagrama Entidad–Relación
-
+![Diagrama ERD de la base de datos](docs/entidad-relacion.png)
 
 
 🔐 Validaciones
