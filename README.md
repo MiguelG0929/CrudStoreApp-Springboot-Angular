@@ -98,7 +98,7 @@ Se utilizan **Jakarta Validation**:
 
 Ejemplo en Producto:
 
-```java
+java
 @NotNull
 @Positive
 BigDecimal precio;
