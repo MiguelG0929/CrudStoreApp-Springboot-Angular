@@ -57,28 +57,7 @@ DTO
 Separación entre modelo interno y contratos API
 
 📂 Estructura del Proyecto
-src/main/java/com/mglopez.crudstore
-├── config
-│   ├── CorsConfig
-│   └── DataInitializer
-├── controllers
-│   ├── CategoriaController
-│   └── ProductoController
-├── dtos
-│   ├── categoria
-│   └── producto
-├── models
-│   ├── CategoriaEntity
-│   └── ProductoEntity
-├── repositories
-│   ├── CategoriaRepository
-│   └── ProductoRepository
-├── services
-│   ├── CategoriaService
-│   ├── ProductoService
-│   └── impl
-│       ├── CategoriaServiceImpl
-│       └── ProductoServiceImpl
+![Estructura de directorios del proyecto](docs/organizacion-carpetas.png)
 
 🧩 Patrones de Diseño Aplicados
 
