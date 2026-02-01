@@ -120,6 +120,7 @@ spring.jpa.properties.hibernate.format_sql=true
 
 
 🌐 CORS
+~~~
 Configurado para permitir acceso desde Angular:
 
 .allowedOrigins("http://localhost:4200")
@@ -131,6 +132,7 @@ Configurado para permitir acceso desde Angular:
 mvn clean install
 mvn spring-boot:run
 
+~~~
 
 Servidor: http://localhost:9525
 
