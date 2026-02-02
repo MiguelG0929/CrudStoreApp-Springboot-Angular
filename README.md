@@ -177,4 +177,310 @@ Ideal para entorno de desarrollo.
 ✅ Código limpio y legible
 
 
+# Crudstore Frontend
+
+Frontend de una aplicación **CRUD de Categorías y Productos**, desarrollada con **Angular 21**, **Angular Material** y arquitectura **standalone components**. Este proyecto consume una API REST para la gestión de una tienda (store) y está pensado como ejemplo profesional y escalable.
+
+---
+
+## 🧩 Tecnologías utilizadas
+
+* **Angular 21** (standalone components)
+* **Angular Material** (UI / UX)
+* **RxJS** (manejo de streams y asincronía)
+* **TypeScript**
+* **Reactive Forms**
+* **Angular Router + Resolvers**
+* **HTTP Client**
+
+---
+
+## 📁 Estructura del proyecto
+
+```bash
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   └── http/              # (Reservado para interceptores, config global HTTP)
+│   │   ├── features/
+│   │   │   ├── categorias/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── categoria-list/
+│   │   │   │   │   └── categoria-form/
+│   │   │   │   ├── models/
+│   │   │   │   └── services/
+│   │   │   ├── productos/
+│   │   │   │   ├── components/
+│   │   │   │   │   ├── producto-list/
+│   │   │   │   │   └── producto-form/
+│   │   │   │   ├── models/
+│   │   │   │   └── services/
+│   │   ├── shared/                # Componentes reutilizables (futuro)
+│   │   ├── app.component.*
+│   │   ├── app.routes.ts
+│   │   └── app.config.ts
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.scss
+├── angular.json
+├── package.json
+└── README.md
+```
+
+---
+
+## 🚀 Arranque del proyecto
+
+### 1️⃣ Instalar dependencias
+
+```bash
+npm install
+```
+
+### 2️⃣ Ejecutar en desarrollo
+
+```bash
+npm start
+```
+
+La aplicación estará disponible en:
+
+```
+http://localhost:4200
+```
+
+---
+
+## 🔌 Backend esperado
+
+El frontend consume una API REST disponible en:
+
+* **Categorías:** `http://localhost:9525/api/categorias`
+* **Productos:** `http://localhost:9525/api/productos`
+
+> ⚠️ El backend debe estar levantado previamente.
+
+---
+
+## 🧠 Arquitectura general
+
+* **Standalone Components:** no se usan NgModules.
+* **Feature-based architecture:** cada dominio (categorías, productos) es independiente.
+* **Resolvers:** los datos se cargan antes de renderizar las vistas.
+* **Servicios:** encapsulan la lógica de comunicación HTTP.
+* **Modelos / DTOs:** tipado fuerte entre frontend y backend.
+
+---
+
+## 🧭 Bootstrap de la aplicación
+
+### `main.ts`
+
+Responsable de arrancar la aplicación usando `bootstrapApplication`:
+
+* Carga `AppComponent`
+* Aplica configuración global (`appConfig`)
+
+### `app.config.ts`
+
+Configura los providers globales:
+
+* Router
+* HttpClient
+* Animaciones
+
+---
+
+## 🧩 Componente raíz
+
+### `AppComponent`
+
+* Toolbar principal con navegación
+* `router-outlet` para renderizar vistas
+
+Incluye:
+
+* Angular Material Toolbar
+* Botones de navegación a Categorías y Productos
+
+---
+
+## 🗺️ Rutas de la aplicación
+
+Definidas en `app.routes.ts`:
+
+```ts
+/
+/categorias
+/categorias/nueva
+/categorias/editar/:id
+/productos
+/productos/nuevo
+/productos/editar/:id
+```
+
+### Resolvers
+
+* **CategoriaResolver**: precarga categorías
+* **ProductoResolver**: precarga productos
+
+Evitan pantallas vacías y mejoran UX.
+
+---
+
+## 🏷️ Módulo de Categorías
+
+### Modelo
+
+```ts
+export interface Categoria {
+  id: number;
+  nombre: string;
+  descripcion: string;
+  activa: boolean;
+  fechaCreacion: string;
+}
+```
+
+### Servicio `CategoriaService`
+
+Responsabilidades:
+
+* Listar categorías
+* Obtener por ID
+* Crear
+* Actualizar
+* Eliminar
+
+Incluye:
+
+* Timeout
+* Retry
+* Manejo de errores
+
+### Listado de categorías
+
+`CategoriaListComponent`
+
+* Usa `MatTable`
+* Datos cargados por resolver
+* Eliminación directa
+
+### Formulario de categorías
+
+`CategoriaFormComponent`
+
+* Reactive Forms
+* Validaciones
+* Reutilizado para crear y editar
+
+---
+
+## 📦 Módulo de Productos
+
+### Modelos
+
+```ts
+export interface Producto {
+  id: number;
+  name: string;
+  descripcion: string;
+  precio: number;
+  activo: boolean;
+  categoriaId: number;
+  categoriaNombre: string;
+  fechaCreacion: string;
+}
+
+export interface ProductoCreateDTO {
+  name: string;
+  descripcion: string;
+  precio: number;
+  categoriaId: number;
+}
+```
+
+### Servicio `ProductoService`
+
+Funciones:
+
+* CRUD completo
+* Listar por categoría (opcional)
+* Manejo avanzado de errores
+
+### Listado de productos
+
+`ProductoListComponent`
+
+* Tabla con columnas:
+
+  * Nombre
+  * Descripción
+  * Precio
+  * Categoría
+  * Estado
+  * Acciones
+
+### Formulario de productos
+
+`ProductoFormComponent`
+
+* Reactive Forms
+* Carga dinámica de categorías
+* Soporte crear / editar
+* Validaciones de negocio
+
+---
+
+## 🎨 UI / UX
+
+* Angular Material
+* Diseño limpio y responsive
+* Feedback visual:
+
+  * Loading spinners
+  * Confirmaciones
+  * Alertas
+
+---
+
+## ✅ Buenas prácticas aplicadas
+
+* Tipado estricto
+* Separación de responsabilidades
+* Código reutilizable
+* Manejo de errores
+* Arquitectura escalable
+
+---
+
+## 📌 Mejoras futuras
+
+* Autenticación / Autorización
+* Interceptores HTTP
+* Guards de rutas
+* Paginación y filtros
+* Testing unitario
+* Variables de entorno
+
+---
+
+## 👨‍💻 Autor
+
+Proyecto desarrollado como ejemplo profesional de **frontend Angular moderno**.
+
+---
+
+## 📄 Licencia
+
+Este proyecto es de uso libre para fines educativos y demostrativos.
+
+
+
+
+
+
+
 
